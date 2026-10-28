@@ -1,0 +1,200 @@
+/* ============================================================
+   IDN Mengajar — all-in-one links
+   Style guideline: anthropic-DESIGN.md
+   Palette : bg #FAF9F5 · ink #141413
+   Type    : 58px display / 1.1 lh · 12px body / -0.24px tracking
+   Spacing : [2,4,8,12,16,22,58,68] · Radius: 8/16/24
+   Break   : 768px
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Anthropic Sans', 'Segoe UI', Arial, sans-serif;
+  background: #faf9f5;
+  color: #141413;
+  font-size: 12px;
+  letter-spacing: -0.24px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 58px 22px 68px;
+}
+
+/* ---------- intro ---------- */
+.intro { margin-bottom: 58px; }
+
+.intro-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  color: #14141399; /* #141413 @ 60% */
+  margin-bottom: 22px;
+}
+
+.intro-title {
+  font-size: clamp(34px, 9vw, 58px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 22px;
+}
+
+.intro-desc {
+  max-width: 420px; /* < 80 chars */
+  font-size: 14px;
+  color: #141413b3; /* ~70% */
+}
+
+/* ---------- group ---------- */
+.group { margin-bottom: 58px; }
+.group:last-of-type { margin-bottom: 68px; }
+
+.group-label {
+  font-family: 'Anthropic Mono', 'Cascadia Mono', 'Consolas', monospace;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+/* ---------- cards ---------- */
+.cards {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.card {
+  display: block;
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px 58px 22px 22px; /* right space utk arrow */
+  box-shadow:
+    rgba(0,0,0,0.01) 0 2px 2px 0,
+    rgba(0,0,0,0.02) 0 4px 4px 0,
+    rgba(0,0,0,0.04) 0 16px 24px 0;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card::after {
+  content: '↗';
+  position: absolute;
+  right: 22px;
+  top: 20px;
+  font-family: 'Anthropic Mono', 'Cascadia Mono', 'Consolas', monospace;
+  font-size: 16px;
+  color: #14141366;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    rgba(0,0,0,0.01) 0 2px 2px 0,
+    rgba(0,0,0,0.02) 0 4px 4px 0,
+    rgba(0,0,0,0.08) 0 16px 24px 0;
+}
+
+.card:hover::after {
+  transform: translate(2px, -2px);
+  color: #141413;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: #14141399;
+}
+
+/* ---------- featured (dark) card ---------- */
+.card--featured,
+.card--featured:hover {
+  background: #141413;
+  color: #ffffff;
+}
+
+.card--featured .card-title {
+  color: #ffffff;
+}
+
+.card--featured .card-desc {
+  color: #faf9f5b3;
+}
+
+.card--featured::after {
+  color: #faf9f580;
+}
+
+.card--featured:hover::after {
+  color: #faf9f5;
+}
+
+/* ---------- entrance reveal ---------- */
+.intro,
+.group {
+  animation: rise 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.group:nth-of-type(1) { animation-delay: 100ms; }
+.group:nth-of-type(2) { animation-delay: 200ms; }
+.group:nth-of-type(3) { animation-delay: 300ms; }
+.group:nth-of-type(4) { animation-delay: 400ms; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- footer ---------- */
+.foot {
+  padding-top: 22px;
+  border-top: 1px solid #1414131a;
+  font-family: 'Anthropic Mono', 'Cascadia Mono', 'Consolas', monospace;
+  font-size: 12px;
+  color: #14141380;
+}
+
+/* ---------- a11y ---------- */
+:focus-visible {
+  outline: 2px solid #141413;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::after {
+    transition: none;
+  }
+  .card:hover { transform: none; }
+  .card:hover::after { transform: none; }
+  .intro,
+  .group {
+    animation: none;
+  }
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 768px) {
+  .page { padding: 34px 16px 48px; }
+  .intro { margin-bottom: 34px; }
+  .group { margin-bottom: 34px; }
+  .group:last-of-type { margin-bottom: 48px; }
+  .card { padding: 18px; }
+}
